@@ -1,0 +1,5 @@
+<%= link_to 'Submit a new link', new_link_path %>
+
+<% @links.each do |link| %>
+  <%= link_to link.link_title, link.link_url %>
+<% end %>
