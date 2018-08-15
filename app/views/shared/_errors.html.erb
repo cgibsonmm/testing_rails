@@ -1,0 +1,5 @@
+<% flash.each do |type, msg| %>
+  <div class="#{parse_flash(type)}">
+    <%= msg %>
+  </div>
+<% end %>

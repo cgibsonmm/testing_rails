@@ -11,6 +11,9 @@ class LinksController < ApplicationController
     @link = Link.new(link_params)
     if @link.save
       redirect_to links_path
+    else
+      render :new
+      flash.now[:error] = "Error saving Link."
     end
   end
 
