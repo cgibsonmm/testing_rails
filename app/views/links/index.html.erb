@@ -6,7 +6,11 @@
   <ul>
     <% @links.each do |link| %>
       <div class="row">
-        <li><%= link_to link.link_title, link.link_url %></li>
+        <li id="link_<%= link.id %>" data-role="score">
+          <div class="link_<%= link.id %>_count" data-role="score"><%= link.upvotes %></div>
+          <%= link_to link.link_title, link.link_url %>
+          <%= button_to "Upvote", upvote_link_url(link) %>
+        </li>
       </div>
     <% end %>
   </ul>

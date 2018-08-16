@@ -17,7 +17,17 @@ class LinksController < ApplicationController
     end
   end
 
+  def upvote
+    @link = Link.find(params[:id])
+    @link.increment!(:upvotes)
+    redirect_to links_path
+  end
+
   private
+
+  def upvote_params
+    params.require(:link).permit(:upvotes)
+  end
 
   def link_params
     params.require(:link).permit(:link_title, :link_url)
