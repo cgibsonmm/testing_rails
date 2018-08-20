@@ -21,12 +21,18 @@ end
 
 RSpec.describe Link, ".hottest_first" do
   it "returns an array orderd form highest likes to lowest" do
-    coldest_link = create(:link, upvotes: 3, downvotes: 3)
+    coldest_link = create(:link, upvotes: 3, downvotes: 3, link_url: 'www.hello.com')
 
-    hottest_link = create(:link, upvotes: 5, downvotes: 1)
+    hottest_link = create(:link, upvotes: 5, downvotes: 1, link_url: 'www.yes.com')
 
-    lukewarm_link = create(:link, upvotes: 3, downvotes: 1)
+    lukewarm_link = create(:link, upvotes: 3, downvotes: 1, link_url: 'www.bye.com')
 
     expect(Link.hottest_first).to eq [hottest_link, lukewarm_link, coldest_link]
   end
+end
+
+RSpec.describe Link, "validations" do
+  it { is_expected.to validate_presence_of(:link_title) }
+  it { is_expected.to validate_presence_of(:link_url) }
+  it { is_expected.to validate_uniqueness_of(:link_url) }
 end
