@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
   def index
-    @links = Link.all.hottest_first
+    @links = Link.all.order("upvotes - downvotes DESC")
 
     @link_json = LinkSerializer.new(@links).serialized_json
 
