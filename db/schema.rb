@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20180816074245) do
     t.string "link_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "upvotes", default: 0
-    t.integer "downvotes"
+    t.integer "upvotes", default: 0, null: false
+    t.integer "downvotes", default: 0, null: false
     t.index ["link_url"], name: "index_links_on_link_url", unique: true
   end
 

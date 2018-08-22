@@ -10,7 +10,11 @@ class Link < ApplicationRecord
     increment!(:upvotes)
   end
 
+  def downvote
+    increment!(:downvotes)
+  end
+
   def score
-    upvotes - downvotes
+    upvotes.to_i - downvotes.to_i
   end
 end

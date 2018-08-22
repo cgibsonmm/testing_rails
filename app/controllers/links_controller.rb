@@ -1,6 +1,13 @@
 class LinksController < ApplicationController
   def index
-    @links = Link.all
+    @links = Link.all.hottest_first
+
+    @link_json = LinkSerializer.new(@links).serialized_json
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @link_json}
+    end
   end
 
   def new
@@ -20,6 +27,12 @@ class LinksController < ApplicationController
   def upvote
     @link = Link.find(params[:id])
     @link.upvote
+    redirect_to links_path
+  end
+
+  def downvote
+    @link = Link.find(params[:id])
+    @link.downvote
     redirect_to links_path
   end
 

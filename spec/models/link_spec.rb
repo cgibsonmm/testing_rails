@@ -21,13 +21,15 @@ end
 
 RSpec.describe Link, ".hottest_first" do
   it "returns an array orderd form highest likes to lowest" do
-    coldest_link = create(:link, upvotes: 3, downvotes: 3, link_url: 'www.hello.com')
+    coldest_link = create(:link, upvotes: 3, downvotes: 1, link_url: 'www.hello.com')
 
     hottest_link = create(:link, upvotes: 5, downvotes: 1, link_url: 'www.yes.com')
 
-    lukewarm_link = create(:link, upvotes: 3, downvotes: 1, link_url: 'www.bye.com')
+    lukewarm_link = create(:link, upvotes: 4, downvotes: 1, link_url: 'www.bye.com')
 
-    expect(Link.hottest_first).to eq [hottest_link, lukewarm_link, coldest_link]
+    default_link = create(:link, link_url: 'www.default.com')
+
+    expect(Link.hottest_first).to eq [hottest_link, lukewarm_link, coldest_link, default_link]
   end
 end
 
